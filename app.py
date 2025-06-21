@@ -41,7 +41,15 @@ with tab4:
     st.subheader("Enter Review for Sentiment Prediction")
     user_input = st.text_area("Review:")
 
-    if st.button("Predict"):
+        user_star = st.slider(
+        "Star Rating:", 
+        min_value=1, max_value=5, 
+        value=3, step=1
+    )
+
+      if st.button("Predict"):
+        # Predict sentiment from review text
         prediction = model.predict([user_input])
         sentiment = "👍 Positive" if prediction[0] == 1 else "👎 Negative"
         st.success(f"Predicted Sentiment: {sentiment}")
+        st.info(f"Your Star Rating Input: {user_star}")
