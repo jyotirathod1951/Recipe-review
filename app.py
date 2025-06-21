@@ -45,7 +45,7 @@ with tab4:
     st.subheader("Enter Review for Sentiment Prediction")
     user_input = st.text_area("Review:")
 
-    # Star rating as a selectbox
+    # Star Rating as a dropdown box
     user_star = st.selectbox(
         "Star Rating:",
         options=[1, 2, 3, 4, 5],
@@ -53,10 +53,8 @@ with tab4:
     )
 
     if st.button("Predict"):
-        # Predict sentiment from review text
+        # Predict sentiment
         prediction = model.predict([user_input])
         sentiment = "👍 Positive" if prediction[0] == 1 else "👎 Negative"
         st.success(f"Predicted Sentiment: {sentiment}")
         st.info(f"Your Star Rating Input: {user_star}")
-
-        
