@@ -41,14 +41,24 @@ with tab3:
     st.pyplot(fig2)
 
 # Tab 4: Sentiment Predictor
+
 with tab4:
     st.subheader("Enter Review for Sentiment Prediction")
     user_input = st.text_area("Review:")
-    user_star = st.slider(
+    
+    # Star rating as a select box
+    user_star = st.selectbox(
         "Star Rating:",
-        min_value=1, max_value=5,
-        value=3, step=1
+        options=[1, 2, 3, 4, 5],
+        index=2  # default is 3
     )
+
+    if st.button("Predict"):
+        # Predict sentiment
+        prediction = model.predict([user_input])
+        sentiment = "👍 Positive" if prediction[0] == 1 else "👎 Negative"
+        st.success(f"Predicted Sentiment: {sentiment}")
+        st.info(f"Your Star Rating Input: {user_star}")
 
     if st.button("Predict"):
         # Predict sentiment
